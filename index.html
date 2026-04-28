@@ -26,6 +26,16 @@
       text-align: center;
     }
 
+    .profile-img {
+      width: 170px;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid white;
+      margin-bottom: 22px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
     header h1 {
       font-size: 2.8rem;
       margin-bottom: 10px;
@@ -151,6 +161,11 @@
       .card {
         padding: 20px;
       }
+
+      .profile-img {
+        width: 140px;
+        height: 140px;
+      }
     }
   </style>
 </head>
@@ -158,9 +173,15 @@
 <body>
 
   <header>
+    <img 
+      class="profile-img"
+      src="https://media.licdn.com/dms/image/v2/D5603AQEbwLOfXcrqFg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1730779117293?e=1778716800&v=beta&t=AomFcjOWgXF3h1Q8xWN98tIdluqX0PvmtReqrO7fAsI"
+      alt="Saswat Panda profile picture"
+    />
+
     <h1>Hi there, I'm Saswat Panda 👋</h1>
     <p>
-      APPF Research Officer specialising in Machine Learning, Computer Vision,
+      APPN Research Officer specialising in Machine Learning, Computer Vision,
       AI-driven plant phenotyping, intelligent scanners, and data-driven research systems.
     </p>
   </header>
@@ -170,10 +191,16 @@
     <section class="card">
       <h2>👨‍💼 About Me</h2>
       <p>
-        I am an <span class="highlight">APPF Research Officer in Machine Learning and Computer Vision</span>
+        I am an <span class="highlight">APPN Research Officer in Machine Learning and Computer Vision</span>
         at <span class="highlight">The Australian National University</span>.
         I work on developing intelligent scanners and processing complex plant data
         to generate vital plant traits for phenotyping and agricultural research.
+      </p>
+      <br />
+      <p>
+        I am also leading the <span class="highlight">Drone-to-Leaf research project</span>,
+        which focuses on developing an AI-enabled pipeline for moving from canopy-level drone imagery
+        to leaf-level analytics, trait extraction, and plant health insights.
       </p>
       <br />
       <p>
@@ -186,11 +213,16 @@
 
     <section class="card">
       <h2>🎯 Current Engagement</h2>
-      <h3>🌱 APPF Research Officer — AI</h3>
+      <h3>🌱 APPN Research Officer — AI</h3>
       <p>
         Building intelligent scanners and processing plant imaging data to generate
         important plant traits. My work involves machine learning, 2D/3D computer vision,
         hyperspectral data processing, and data analysis for plant phenotyping.
+      </p>
+      <br />
+      <p>
+        I am currently leading the <strong>Drone-to-Leaf research project</strong>, where I am working on
+        AI-based methods to connect drone imagery with detailed leaf-level analysis and plant trait estimation.
       </p>
     </section>
 
@@ -257,6 +289,14 @@
           <h3>PlantDis</h3>
           <p>A plant disease detector app based on Nested Transfer Learning.</p>
           <a href="https://github.com/spsaswat/plantdis" target="_blank">View Project</a>
+        </div>
+
+        <div class="project">
+          <h3>Drone-to-Leaf</h3>
+          <p>
+            A research project focused on connecting drone imagery with leaf-level
+            analytics, plant trait extraction, and AI-based plant health insights.
+          </p>
         </div>
 
         <div class="project">
