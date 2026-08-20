@@ -213,9 +213,9 @@
       height: 126px;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       gap: 34px;
-      padding: 28px 14px 30px;
+      padding: 28px 14px 30px 18px;
     }
 
     .about-wave-icon {
@@ -1023,7 +1023,7 @@
       if (!hero || !canvas || !context) return;
 
       const palette = ["#3367d6", "#2380c2"];
-      const shapes = ["dot", "dot", "pill", "ring", "plus", "diamond", "spark", "brackets", "node", "cube", "leaf"];
+      const shapes = ["dot", "dot", "pill", "ring", "plus", "diamond", "spark", "brackets", "node", "cube", "plant"];
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
       const pointer = { x: -1000, y: -1000, active: false };
 
@@ -1059,7 +1059,7 @@
         }
 
         const shape = index % 10 === 0
-          ? "leaf"
+          ? "plant"
           : index % 13 === 0
             ? "camera"
             : index % 17 === 0
@@ -1068,7 +1068,7 @@
                 ? "ai"
                 : shapes[Math.floor(Math.random() * shapes.length)];
         const isGlyph = !["dot", "pill"].includes(shape);
-        const isFeatureIcon = ["leaf", "camera", "drone", "ai"].includes(shape);
+        const isFeatureIcon = ["plant", "camera", "drone", "ai"].includes(shape);
         const color = palette[index % palette.length];
 
         return {
@@ -1078,11 +1078,11 @@
           homeY: y,
           vx: 0,
           vy: 0,
-          size: isFeatureIcon ? randomBetween(11, 16) : isGlyph ? randomBetween(7, 13) : randomBetween(2.5, 7),
+          size: isFeatureIcon ? randomBetween(8, 12) : isGlyph ? randomBetween(5.5, 9.5) : randomBetween(2, 5),
           color,
           shape,
-          rotation: randomBetween(0, Math.PI * 2),
-          spin: (index % 2 === 0 ? 1 : -1) * randomBetween(0.00035, 0.00075),
+          rotation: shape === "plant" ? 0 : randomBetween(0, Math.PI * 2),
+          spin: shape === "plant" ? 0 : (index % 2 === 0 ? 1 : -1) * randomBetween(0.00028, 0.00058),
           phase: (index / total) * Math.PI * 2,
           driftX: randomBetween(6, 11),
           driftY: randomBetween(5, 9),
@@ -1092,7 +1092,7 @@
 
       function resize() {
         const bounds = hero.getBoundingClientRect();
-        const density = bounds.width < 620 ? 33 : Math.min(78, Math.max(48, Math.round(bounds.width / 22)));
+        const density = bounds.width < 620 ? 27 : Math.min(60, Math.max(38, Math.round(bounds.width / 28)));
         const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
 
         width = bounds.width;
@@ -1271,12 +1271,17 @@
             context.lineTo(0, size * 0.82);
             context.stroke();
             break;
-          case "leaf":
-            context.moveTo(-size * 0.78, size * 0.62);
-            context.bezierCurveTo(-size * 0.6, -size * 0.74, size * 0.65, -size * 0.8, size * 0.78, -size * 0.64);
-            context.bezierCurveTo(size * 0.72, size * 0.5, -size * 0.22, size * 0.78, -size * 0.78, size * 0.62);
-            context.moveTo(-size * 0.62, size * 0.5);
-            context.lineTo(size * 0.48, -size * 0.46);
+          case "plant":
+            context.moveTo(0, size * 0.72);
+            context.lineTo(0, -size * 0.18);
+            context.moveTo(0, size * 0.08);
+            context.bezierCurveTo(-size * 0.22, -size * 0.48, -size * 0.78, -size * 0.52, -size * 0.78, -size * 0.48);
+            context.bezierCurveTo(-size * 0.76, -size * 0.02, -size * 0.34, size * 0.14, 0, size * 0.08);
+            context.moveTo(0, -size * 0.14);
+            context.bezierCurveTo(size * 0.22, -size * 0.7, size * 0.78, -size * 0.66, size * 0.78, -size * 0.62);
+            context.bezierCurveTo(size * 0.76, -size * 0.18, size * 0.36, -size * 0.04, 0, -size * 0.14);
+            context.moveTo(-size * 0.68, size * 0.72);
+            context.lineTo(size * 0.68, size * 0.72);
             context.stroke();
             break;
           case "camera":
