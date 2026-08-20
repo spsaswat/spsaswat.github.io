@@ -46,7 +46,7 @@
       background:
         radial-gradient(circle at 11% 25%, rgba(52, 168, 83, 0.035), transparent 25%),
         radial-gradient(circle at 89% 20%, rgba(66, 133, 244, 0.04), transparent 24%),
-        radial-gradient(circle at 75% 88%, rgba(234, 67, 53, 0.028), transparent 28%);
+        radial-gradient(circle at 75% 88%, rgba(15, 157, 121, 0.025), transparent 28%);
       pointer-events: none;
     }
 
@@ -227,6 +227,8 @@
     }
 
     .project {
+      display: flex;
+      flex-direction: column;
       background: #f8fafc;
       padding: 18px;
       border-radius: 12px;
@@ -237,14 +239,79 @@
       margin-top: 0;
     }
 
-    .project a {
+    .project-link {
+      align-self: flex-start;
+      margin-top: auto;
+      padding-top: 10px;
       color: #0f766e;
       font-weight: 600;
       text-decoration: none;
     }
 
-    .project a:hover {
+    .project-link:hover {
       text-decoration: underline;
+    }
+
+    .project-wave {
+      position: relative;
+      margin: 4px 0 30px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      overscroll-behavior-inline: contain;
+    }
+
+    .project-wave::-webkit-scrollbar {
+      display: none;
+    }
+
+    .project-wave-track {
+      min-width: 740px;
+      height: 142px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 28px 14px 34px;
+    }
+
+    .wave-icon {
+      width: 68px;
+      height: 68px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #dfe5e9;
+      border-radius: 50%;
+      background: #ffffff;
+      color: #2f6fc1;
+      box-shadow: 0 10px 24px rgba(33, 48, 66, 0.08);
+      text-decoration: none;
+      will-change: transform;
+      touch-action: pan-x;
+      transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .wave-icon--green {
+      color: #138766;
+    }
+
+    .wave-icon:hover,
+    .wave-icon:focus-visible {
+      border-color: currentColor;
+      background: #f8fbfc;
+      box-shadow: 0 13px 30px rgba(33, 48, 66, 0.13);
+      outline: none;
+    }
+
+    .wave-icon svg {
+      width: 36px;
+      height: 36px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      pointer-events: none;
     }
 
     .links a {
@@ -311,6 +378,34 @@
 
       .card {
         padding: 20px;
+      }
+
+      .project-wave {
+        margin: 0 0 24px;
+      }
+
+      .project-wave-track {
+        min-width: 650px;
+        height: 124px;
+        gap: 14px;
+        padding: 24px 8px 28px;
+      }
+
+      .wave-icon {
+        width: 58px;
+        height: 58px;
+      }
+
+      .wave-icon svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wave-icon {
+        will-change: auto;
+        transition: none;
       }
     }
 
@@ -443,14 +538,132 @@
       </ul>
     </section>
 
-    <section class="card">
+    <section class="card featured-projects-card" id="featured-projects">
       <h2>📌 Featured Projects</h2>
+
+      <div class="project-wave" aria-label="Interactive featured project icons">
+        <div class="project-wave-track">
+          <a
+            class="wave-icon wave-icon--green"
+            href="https://github.com/spsaswat/plantdis"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open PlantDis project"
+          >
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M38 8C22 9 11 16 10 29c-1 7 4 11 10 11 13 0 20-13 18-32Z" />
+              <path d="M9 41c6-10 14-16 24-24" />
+              <circle cx="24" cy="24" r="2" />
+              <circle cx="30" cy="17" r="1.5" />
+            </svg>
+          </a>
+
+          <a
+            class="wave-icon"
+            href="https://github.com/spsaswat/PhenoFusion3D"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open PhenoFusion3D project"
+          >
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="m24 7 14 8v17l-14 9-14-9V15l14-8Z" />
+              <path d="m10 15 14 8 14-8M24 23v18" />
+              <path d="M6 11V6h5M42 11V6h-5M6 37v5h5M42 37v5h-5" />
+            </svg>
+          </a>
+
+          <span class="wave-icon" role="img" aria-label="Drone-to-Leaf project">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="m19 21-9-7m19 7 9-7M19 27l-9 7m19-7 9 7" />
+              <path d="m24 18 7 6-7 6-7-6 7-6Z" />
+              <ellipse cx="8" cy="12" rx="6" ry="2.5" />
+              <ellipse cx="40" cy="12" rx="6" ry="2.5" />
+              <ellipse cx="8" cy="36" rx="6" ry="2.5" />
+              <ellipse cx="40" cy="36" rx="6" ry="2.5" />
+            </svg>
+          </span>
+
+          <a
+            class="wave-icon"
+            href="https://github.com/spsaswat/Heart-Disease-Detector"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open Heart Disease Detector project"
+          >
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M24 40S7 30 7 18c0-6 4-10 10-10 4 0 6 2 7 5 2-3 4-5 8-5 6 0 10 4 10 10 0 12-18 22-18 22Z" />
+              <path d="M11 24h8l3-6 5 12 3-6h7" />
+            </svg>
+          </a>
+
+          <a
+            class="wave-icon wave-icon--green"
+            href="https://github.com/spsaswat/FarmHelper_NS270_TechnoBuilders"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open FarmHelper project"
+          >
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M24 41V20" />
+              <path d="M24 25C13 25 8 19 8 10c9 0 15 4 16 15Z" />
+              <path d="M24 31c11 0 16-6 16-15-9 0-15 5-16 15Z" />
+              <path d="M10 41h28" />
+            </svg>
+          </a>
+
+          <a
+            class="wave-icon"
+            href="https://github.com/spsaswat/ToDoRedefined"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open ToDoRedefined project"
+          >
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <rect x="10" y="7" width="28" height="34" rx="3" />
+              <path d="m16 17 3 3 5-6M28 18h5M16 29l3 3 5-6M28 30h5" />
+            </svg>
+          </a>
+
+          <a
+            class="wave-icon"
+            href="https://github.com/Abhishek-st/Skin-Lesion-Analysis"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open Skin Lesion Analysis project"
+          >
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M18 7H8v10M30 7h10v10M18 41H8V31M30 41h10V31" />
+              <circle cx="24" cy="24" r="10" />
+              <path d="M19 25c3-7 8-7 11-1-2 6-8 8-11 1Z" />
+            </svg>
+          </a>
+
+          <a
+            class="wave-icon"
+            href="https://github.com/SonuAndSuchi/SonuWedsSuchi"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open Sonu Weds Suchi project"
+          >
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <rect x="5" y="8" width="38" height="32" rx="3" />
+              <path d="M5 16h38M11 12h.1M16 12h.1M18 25l-5 4 5 4M30 25l5 4-5 4M26 22l-4 14" />
+            </svg>
+          </a>
+        </div>
+      </div>
 
       <div class="projects">
         <div class="project">
           <h3>PlantDis</h3>
           <p>A plant disease detector app based on Nested Transfer Learning.</p>
-          <a href="https://github.com/spsaswat/plantdis" target="_blank">View Project</a>
+          <a class="project-link" href="https://github.com/spsaswat/plantdis" target="_blank">View Project</a>
+        </div>
+
+        <div class="project">
+          <h3>PhenoFusion3D</h3>
+          <p>Builds RGB-D plant models, measures 3D traits, then aligns geometry with hyperspectral imagery for analysis.</p>
+          <a class="project-link" href="https://github.com/spsaswat/PhenoFusion3D" target="_blank">View Project</a>
         </div>
 
         <div class="project">
@@ -464,31 +677,31 @@
         <div class="project">
           <h3>Heart Disease Detector</h3>
           <p>A machine learning project for heart disease detection.</p>
-          <a href="https://github.com/spsaswat/Heart-Disease-Detector" target="_blank">View Project</a>
+          <a class="project-link" href="https://github.com/spsaswat/Heart-Disease-Detector" target="_blank">View Project</a>
         </div>
 
         <div class="project">
           <h3>FarmHelper</h3>
           <p>A smart farming solution developed for Smart India Hackathon 2020.</p>
-          <a href="https://github.com/spsaswat/FarmHelper_NS270_TechnoBuilders" target="_blank">View Project</a>
+          <a class="project-link" href="https://github.com/spsaswat/FarmHelper_NS270_TechnoBuilders" target="_blank">View Project</a>
         </div>
 
         <div class="project">
           <h3>ToDoRedefined</h3>
           <p>A simple ToDo Android application built using Java.</p>
-          <a href="https://github.com/spsaswat/ToDoRedefined" target="_blank">View Project</a>
+          <a class="project-link" href="https://github.com/spsaswat/ToDoRedefined" target="_blank">View Project</a>
         </div>
 
         <div class="project">
           <h3>Skin Lesion Analysis</h3>
           <p>Computer vision based project for skin lesion analysis.</p>
-          <a href="https://github.com/Abhishek-st/Skin-Lesion-Analysis" target="_blank">View Project</a>
+          <a class="project-link" href="https://github.com/Abhishek-st/Skin-Lesion-Analysis" target="_blank">View Project</a>
         </div>
 
         <div class="project">
           <h3>Sonu Weds Suchi</h3>
           <p>A wedding website built using HTML.</p>
-          <a href="https://github.com/SonuAndSuchi/SonuWedsSuchi" target="_blank">View Project</a>
+          <a class="project-link" href="https://github.com/SonuAndSuchi/SonuWedsSuchi" target="_blank">View Project</a>
         </div>
       </div>
     </section>
@@ -554,7 +767,7 @@
 
       if (!hero || !canvas || !context) return;
 
-      const palette = ["#0f9d79", "#3367d6", "#7147c7", "#d94373", "#d97706"];
+      const palette = ["#3367d6", "#2380c2"];
       const shapes = ["dot", "dot", "pill", "ring", "plus", "diamond", "spark", "brackets", "node", "cube", "leaf"];
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
       const pointer = { x: -1000, y: -1000, active: false };
@@ -595,11 +808,11 @@
         const color = shape === "leaf"
           ? (Math.random() > 0.5 ? "#0f9d79" : "#34a853")
           : shape === "camera"
-            ? (Math.random() > 0.5 ? "#3367d6" : "#7147c7")
+            ? (Math.random() > 0.5 ? "#3367d6" : "#2380c2")
             : shape === "drone"
-              ? (Math.random() > 0.5 ? "#3367d6" : "#d97706")
+              ? (Math.random() > 0.5 ? "#3367d6" : "#2380c2")
               : shape === "ai"
-                ? (Math.random() > 0.5 ? "#7147c7" : "#d94373")
+                ? (Math.random() > 0.5 ? "#3367d6" : "#2380c2")
                 : palette[Math.floor(Math.random() * palette.length)];
 
         return {
@@ -949,6 +1162,130 @@
       visibilityObserver.observe(hero);
       resize();
       startAnimation();
+    })();
+
+    (() => {
+      const wave = document.querySelector(".project-wave");
+      const icons = [...document.querySelectorAll(".wave-icon")];
+
+      if (!wave || !icons.length) return;
+
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const pointer = { x: -1000, y: -1000, active: false };
+      const states = icons.map((element, index) => ({
+        element,
+        phase: index * 0.72,
+        x: 0,
+        y: 0,
+        velocityX: 0,
+        velocityY: 0
+      }));
+
+      let animationFrame = 0;
+      let isVisible = false;
+
+      function resetIcons() {
+        states.forEach((state) => {
+          state.x = 0;
+          state.y = 0;
+          state.velocityX = 0;
+          state.velocityY = 0;
+          state.element.style.transform = "";
+        });
+      }
+
+      function animate(time) {
+        animationFrame = 0;
+
+        if (reducedMotion.matches) {
+          resetIcons();
+          return;
+        }
+
+        const rectangles = states.map((state) => state.element.getBoundingClientRect());
+        const interactionRadius = 125;
+
+        states.forEach((state, index) => {
+          const waveY = Math.sin(time * 0.00145 + state.phase) * 12;
+          let targetX = 0;
+          let targetY = 0;
+
+          if (pointer.active) {
+            const rectangle = rectangles[index];
+            const centerX = rectangle.left + rectangle.width / 2;
+            const centerY = rectangle.top + rectangle.height / 2;
+            const dx = centerX - pointer.x;
+            const dy = centerY - pointer.y;
+            const distance = Math.hypot(dx, dy) || 1;
+
+            if (distance < interactionRadius) {
+              const force = Math.pow(1 - distance / interactionRadius, 2) * 44;
+              targetX = (dx / distance) * force;
+              targetY = (dy / distance) * force;
+            }
+          }
+
+          state.velocityX += (targetX - state.x) * 0.085;
+          state.velocityY += (targetY - state.y) * 0.085;
+          state.velocityX *= 0.76;
+          state.velocityY *= 0.76;
+          state.x += state.velocityX;
+          state.y += state.velocityY;
+
+          state.element.style.transform = `translate3d(${state.x}px, ${waveY + state.y}px, 0)`;
+        });
+
+        if (isVisible && !document.hidden) {
+          animationFrame = window.requestAnimationFrame(animate);
+        }
+      }
+
+      function startAnimation() {
+        if (!animationFrame && isVisible && !document.hidden && !reducedMotion.matches) {
+          animationFrame = window.requestAnimationFrame(animate);
+        }
+      }
+
+      function stopAnimation() {
+        if (animationFrame) {
+          window.cancelAnimationFrame(animationFrame);
+          animationFrame = 0;
+        }
+      }
+
+      function updatePointer(event) {
+        pointer.x = event.clientX;
+        pointer.y = event.clientY;
+        pointer.active = true;
+      }
+
+      wave.addEventListener("pointermove", updatePointer, { passive: true });
+      wave.addEventListener("pointerdown", updatePointer, { passive: true });
+      wave.addEventListener("pointerleave", () => {
+        pointer.active = false;
+      });
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) stopAnimation();
+        else startAnimation();
+      });
+
+      reducedMotion.addEventListener("change", () => {
+        if (reducedMotion.matches) {
+          stopAnimation();
+          resetIcons();
+        } else {
+          startAnimation();
+        }
+      });
+
+      const visibilityObserver = new IntersectionObserver(([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) startAnimation();
+        else stopAnimation();
+      }, { threshold: 0.05 });
+
+      visibilityObserver.observe(wave);
     })();
   </script>
 
