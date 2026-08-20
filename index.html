@@ -735,7 +735,7 @@
           data-particle-scene="previous"
           tabindex="0"
           role="img"
-          aria-label="Interactive connected data and code particle illustration"
+          aria-label="Interactive particle illustration of connected neurons and moving neural signals"
         >
           <canvas aria-hidden="true"></canvas>
         </div>
@@ -1968,6 +1968,10 @@
         let width = 0;
         let height = 0;
         let particles = [];
+        let neuralSignalPaths = [];
+        let sceneTime = 0;
+        let sceneOffsetX = 0;
+        let sceneOffsetY = 0;
         let animationFrame = 0;
         let isVisible = false;
 
@@ -2067,27 +2071,61 @@
 
         function buildPreviousScene() {
           const points = [];
-          const nodes = [
-            [24, 51, 5],
-            [63, 23, 6],
-            [69, 73, 6],
-            [112, 38, 5],
-            [116, 70, 4]
-          ];
 
-          [[0, 1], [0, 2], [1, 3], [2, 3], [2, 4], [3, 4]].forEach(([from, to]) => {
-            sampleLine(points, nodes[from][0], nodes[from][1], nodes[to][0], nodes[to][1], 6);
+          // Two neurons: circular somas, branching dendrites, and a connecting axon.
+          sampleCircle(points, 64, 48, 8, 8, 17);
+          sampleCircle(points, 64, 48, 2.4, 2.4, 7);
+          [
+            [[58, 42], [42, 27], [26, 20]],
+            [[42, 27], [36, 12]],
+            [[56, 48], [37, 48], [18, 38]],
+            [[37, 48], [16, 57]],
+            [[58, 55], [42, 69], [26, 82]],
+            [[42, 69], [47, 86]],
+            [[64, 40], [62, 23], [56, 10]],
+            [[62, 23], [72, 15]]
+          ].forEach((branch) => {
+            for (let index = 0; index < branch.length - 1; index += 1) {
+              sampleLine(points, branch[index][0], branch[index][1], branch[index + 1][0], branch[index + 1][1], 4.5);
+            }
           });
-          nodes.forEach(([x, y, radius]) => sampleCircle(points, x, y, radius, radius, 10));
 
-          // Code brackets and slash.
-          sampleLine(points, 180, 26, 158, 48, 5);
-          sampleLine(points, 158, 48, 180, 70, 5);
-          sampleLine(points, 236, 26, 258, 48, 5);
-          sampleLine(points, 258, 48, 236, 70, 5);
-          sampleLine(points, 220, 22, 196, 75, 5);
+          sampleQuadratic(points, { x: 72, y: 48 }, { x: 104, y: 27 }, { x: 138, y: 48 }, 22);
+          sampleQuadratic(points, { x: 138, y: 48 }, { x: 166, y: 69 }, { x: 199, y: 48 }, 22);
+          sampleCircle(points, 108, 35, 2.2, 2.2, 7);
+          sampleCircle(points, 163, 59, 2.2, 2.2, 7);
+
+          sampleCircle(points, 207, 48, 8, 8, 17);
+          sampleCircle(points, 207, 48, 2.4, 2.4, 7);
+          [
+            [[212, 42], [230, 27], [254, 20]],
+            [[230, 27], [243, 10]],
+            [[215, 48], [237, 48], [261, 37]],
+            [[237, 48], [263, 59]],
+            [[212, 55], [231, 69], [251, 84]],
+            [[231, 69], [235, 87]],
+            [[207, 40], [205, 22], [196, 10]],
+            [[205, 22], [215, 13]]
+          ].forEach((branch) => {
+            for (let index = 0; index < branch.length - 1; index += 1) {
+              sampleLine(points, branch[index][0], branch[index][1], branch[index + 1][0], branch[index + 1][1], 4.5);
+            }
+          });
 
           return points;
+        }
+
+        function buildNeuralSignalPaths(scale, offsetX, offsetY) {
+          const designPaths = [
+            [[18, 38], [37, 48], [56, 48], [64, 48], [72, 48], [104, 35], [138, 48], [166, 59], [199, 48], [207, 48], [215, 48], [237, 48], [263, 59]],
+            [[36, 12], [42, 27], [58, 42], [64, 48], [58, 55], [42, 69], [26, 82]],
+            [[196, 10], [205, 22], [207, 40], [207, 48], [212, 55], [231, 69], [251, 84]]
+          ];
+
+          return designPaths.map((path) => path.map(([x, y]) => ({
+            x: offsetX + x * scale,
+            y: offsetY + y * scale
+          })));
         }
 
         function buildTargets() {
@@ -2131,7 +2169,65 @@
             context.fill();
           });
 
+          if (scene === "previous") drawNeuralSignals();
+
           context.globalAlpha = 1;
+        }
+
+        function pointAlongPath(path, progress) {
+          const segments = [];
+          let totalLength = 0;
+
+          for (let index = 0; index < path.length - 1; index += 1) {
+            const start = path[index];
+            const end = path[index + 1];
+            const length = Math.hypot(end.x - start.x, end.y - start.y);
+            segments.push({ start, end, length });
+            totalLength += length;
+          }
+
+          let distance = progress * totalLength;
+          for (const segment of segments) {
+            if (distance <= segment.length) {
+              const segmentProgress = segment.length ? distance / segment.length : 0;
+              return {
+                x: segment.start.x + (segment.end.x - segment.start.x) * segmentProgress,
+                y: segment.start.y + (segment.end.y - segment.start.y) * segmentProgress
+              };
+            }
+            distance -= segment.length;
+          }
+
+          return path[path.length - 1];
+        }
+
+        function drawNeuralSignals() {
+          const baseProgress = (sceneTime * 0.00012) % 1;
+
+          neuralSignalPaths.forEach((path, pathIndex) => {
+            const signalCount = pathIndex === 0 ? 3 : 2;
+
+            for (let signalIndex = 0; signalIndex < signalCount; signalIndex += 1) {
+              const progress = (baseProgress + pathIndex * 0.21 + signalIndex / signalCount) % 1;
+              const point = pointAlongPath(path, progress);
+              const x = point.x + sceneOffsetX;
+              const y = point.y + sceneOffsetY;
+
+              context.save();
+              context.fillStyle = particleColor;
+              context.shadowColor = particleColor;
+              context.shadowBlur = 8;
+              context.globalAlpha = 0.92;
+              context.beginPath();
+              context.arc(x, y, 2.25, 0, Math.PI * 2);
+              context.fill();
+              context.globalAlpha = 0.18;
+              context.beginPath();
+              context.arc(x, y, 4.5, 0, Math.PI * 2);
+              context.fill();
+              context.restore();
+            }
+          });
         }
 
         function resize() {
@@ -2143,6 +2239,13 @@
           canvas.width = Math.round(width * pixelRatio);
           canvas.height = Math.round(height * pixelRatio);
           context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+          const designScale = Math.min(width / 280, height / 96);
+          const designOffsetX = (width - 280 * designScale) / 2;
+          const designOffsetY = (height - 96 * designScale) / 2;
+          neuralSignalPaths = scene === "previous"
+            ? buildNeuralSignalPaths(designScale, designOffsetX, designOffsetY)
+            : [];
 
           particles = buildTargets().map((target, index) => ({
             x: target.x,
@@ -2157,8 +2260,11 @@
         }
 
         function update(time) {
+          sceneTime = time;
           const groupOffsetY = Math.sin(time * 0.00075 + (scene === "current" ? 0 : 1.2)) * 1.5;
           const groupOffsetX = Math.cos(time * 0.0005 + (scene === "current" ? 0.4 : 1.7)) * 0.8;
+          sceneOffsetX = groupOffsetX;
+          sceneOffsetY = groupOffsetY;
 
           particles.forEach((particle) => {
             let shapeTargetX = particle.target.x;
