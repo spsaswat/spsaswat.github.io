@@ -187,6 +187,107 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     }
 
+    .about-heading-row {
+      margin-bottom: 0;
+    }
+
+    .about-heading-row h2 {
+      margin-bottom: 0;
+    }
+
+    .about-sine-wave {
+      position: relative;
+      margin: 2px 0 22px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      overscroll-behavior-inline: contain;
+    }
+
+    .about-sine-wave::-webkit-scrollbar {
+      display: none;
+    }
+
+    .about-sine-track {
+      min-width: 650px;
+      height: 126px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 34px;
+      padding: 28px 14px 30px;
+    }
+
+    .about-wave-icon {
+      width: 68px;
+      height: 68px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border: 1px solid #dfe5e9;
+      border-radius: 50%;
+      background: #ffffff;
+      color: #2f6fc1;
+      box-shadow: 0 10px 24px rgba(33, 48, 66, 0.08);
+      text-decoration: none;
+      will-change: transform;
+      touch-action: pan-x;
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .about-wave-icon--green {
+      color: #138766;
+    }
+
+    .about-wave-icon:hover,
+    .about-wave-icon:focus-visible {
+      border-color: currentColor;
+      box-shadow: 0 13px 30px rgba(33, 48, 66, 0.13);
+      outline: none;
+    }
+
+    .about-wave-icon svg {
+      width: 36px;
+      height: 36px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      pointer-events: none;
+    }
+
+    .engagement-heading-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 10px;
+    }
+
+    .engagement-heading-row h2 {
+      flex: 0 0 auto;
+      margin-bottom: 0;
+    }
+
+    .engagement-particle-visual {
+      width: min(280px, 40%);
+      height: 96px;
+      flex: 0 0 auto;
+      border-radius: 14px;
+      outline: none;
+    }
+
+    .engagement-particle-visual:focus-visible {
+      box-shadow: 0 0 0 3px rgba(47, 111, 193, 0.16);
+    }
+
+    .engagement-particle-visual canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
     h2 {
       color: #0f766e;
       margin-bottom: 16px;
@@ -273,6 +374,7 @@
       justify-content: space-between;
       gap: 18px;
       padding: 28px 14px 34px;
+      will-change: transform;
     }
 
     .wave-icon {
@@ -380,6 +482,44 @@
         padding: 20px;
       }
 
+      .about-heading-row {
+        margin-bottom: 0;
+      }
+
+      .about-sine-wave {
+        margin: 0 0 18px;
+      }
+
+      .about-sine-track {
+        min-width: 100%;
+        height: 96px;
+        justify-content: flex-start;
+        gap: 10px;
+        padding: 18px 4px 22px;
+      }
+
+      .about-wave-icon {
+        width: 48px;
+        height: 48px;
+      }
+
+      .about-wave-icon svg {
+        width: 26px;
+        height: 26px;
+      }
+
+      .engagement-heading-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+        margin-bottom: 14px;
+      }
+
+      .engagement-particle-visual {
+        width: 100%;
+        height: 88px;
+      }
+
       .project-wave {
         margin: 0 0 24px;
       }
@@ -403,9 +543,14 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .wave-icon {
+      .wave-icon,
+      .about-wave-icon {
         will-change: auto;
         transition: none;
+      }
+
+      .project-wave-track {
+        will-change: auto;
       }
     }
 
@@ -445,8 +590,96 @@
 
   <main class="container">
 
-    <section class="card">
-      <h2>👨‍💼 About Me</h2>
+    <section class="card about-card">
+      <div class="about-heading-row">
+        <h2>About Me</h2>
+      </div>
+
+      <div class="about-sine-wave" aria-label="Six featured project icons moving in a sine wave">
+        <div class="about-sine-track">
+          <a
+            class="about-wave-icon about-wave-icon--green"
+            href="https://github.com/spsaswat/plantdis"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open PlantDis project"
+          >
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M38 8C22 9 11 16 10 29c-1 7 4 11 10 11 13 0 20-13 18-32Z" />
+              <path d="M9 41c6-10 14-16 24-24" />
+              <circle cx="24" cy="24" r="2" />
+              <circle cx="30" cy="17" r="1.5" />
+            </svg>
+          </a>
+
+          <a
+            class="about-wave-icon"
+            href="https://github.com/spsaswat/PhenoFusion3D"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open PhenoFusion3D project"
+          >
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="m24 7 14 8v17l-14 9-14-9V15l14-8Z" />
+              <path d="m10 15 14 8 14-8M24 23v18" />
+              <path d="M6 11V6h5M42 11V6h-5M6 37v5h5M42 37v5h-5" />
+            </svg>
+          </a>
+
+          <span class="about-wave-icon" role="img" aria-label="Drone-to-Leaf project">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="m19 21-9-7m19 7 9-7M19 27l-9 7m19-7 9 7" />
+              <path d="m24 18 7 6-7 6-7-6 7-6Z" />
+              <ellipse cx="8" cy="12" rx="6" ry="2.5" />
+              <ellipse cx="40" cy="12" rx="6" ry="2.5" />
+              <ellipse cx="8" cy="36" rx="6" ry="2.5" />
+              <ellipse cx="40" cy="36" rx="6" ry="2.5" />
+            </svg>
+          </span>
+
+          <a
+            class="about-wave-icon"
+            href="https://github.com/spsaswat/Heart-Disease-Detector"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open Heart Disease Detector project"
+          >
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M24 40S7 30 7 18c0-6 4-10 10-10 4 0 6 2 7 5 2-3 4-5 8-5 6 0 10 4 10 10 0 12-18 22-18 22Z" />
+              <path d="M11 24h8l3-6 5 12 3-6h7" />
+            </svg>
+          </a>
+
+          <a
+            class="about-wave-icon about-wave-icon--green"
+            href="https://github.com/spsaswat/FarmHelper_NS270_TechnoBuilders"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open FarmHelper project"
+          >
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <path d="M24 41V20" />
+              <path d="M24 25C13 25 8 19 8 10c9 0 15 4 16 15Z" />
+              <path d="M24 31c11 0 16-6 16-15-9 0-15 5-16 15Z" />
+              <path d="M10 41h28" />
+            </svg>
+          </a>
+
+          <a
+            class="about-wave-icon"
+            href="https://github.com/spsaswat/ToDoRedefined"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open ToDoRedefined project"
+          >
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <rect x="10" y="7" width="28" height="34" rx="3" />
+              <path d="m16 17 3 3 5-6M28 18h5M16 29l3 3 5-6M28 30h5" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
       <p>
         I am an <span class="highlight">APPN Research Officer in Machine Learning and Computer Vision</span>
         at <span class="highlight">The Australian National University</span>.
@@ -469,7 +702,18 @@
     </section>
 
     <section class="card">
-      <h2>🎯 Current Engagement</h2>
+      <div class="engagement-heading-row">
+        <h2>Current Engagement</h2>
+        <div
+          class="engagement-particle-visual"
+          data-particle-scene="current"
+          tabindex="0"
+          role="img"
+          aria-label="Interactive plant and drone particle illustration"
+        >
+          <canvas aria-hidden="true"></canvas>
+        </div>
+      </div>
       <h3>🌱 APPN Research Officer / Project Lead — AI, ML and Computer Vision</h3>
       <p>
         Building intelligent scanners and processing plant imaging data to generate
@@ -484,7 +728,18 @@
     </section>
 
     <section class="card">
-      <h2>🎯 Previous Engagements</h2>
+      <div class="engagement-heading-row">
+        <h2>Previous Engagements</h2>
+        <div
+          class="engagement-particle-visual"
+          data-particle-scene="previous"
+          tabindex="0"
+          role="img"
+          aria-label="Interactive connected data and code particle illustration"
+        >
+          <canvas aria-hidden="true"></canvas>
+        </div>
+      </div>
 
       <h3>💡 RSE Research Assistant</h3>
       <p>
@@ -781,15 +1036,26 @@
       const randomBetween = (min, max) => Math.random() * (max - min) + min;
 
       function makeParticle(index, total) {
-        const edgeBias = index / total < 0.62;
-        let x = randomBetween(24, width - 24);
-        let y = randomBetween(24, height - 24);
+        const zone = index % 4;
+        const lane = index % 3;
+        const position = (Math.floor(index / 4) + 0.5) / Math.ceil(total / 4);
+        const alongEdge = 0.06 + position * 0.88;
+        let x;
+        let y;
 
-        // Keep most particles around the content, giving the text a quiet focal area.
-        if (edgeBias && x > width * 0.22 && x < width * 0.78 && y > height * 0.2 && y < height * 0.84) {
-          x = Math.random() > 0.5
-            ? randomBetween(24, width * 0.2)
-            : randomBetween(width * 0.8, width - 24);
+        // Evenly distribute particles through coordinated perimeter lanes.
+        if (zone === 0) {
+          x = width * alongEdge;
+          y = height * (0.06 + lane * 0.055);
+        } else if (zone === 1) {
+          x = width * (0.84 + lane * 0.055);
+          y = height * alongEdge;
+        } else if (zone === 2) {
+          x = width * (1 - alongEdge);
+          y = height * (0.84 + lane * 0.055);
+        } else {
+          x = width * (0.06 + lane * 0.055);
+          y = height * (1 - alongEdge);
         }
 
         const shape = index % 10 === 0
@@ -803,30 +1069,24 @@
                 : shapes[Math.floor(Math.random() * shapes.length)];
         const isGlyph = !["dot", "pill"].includes(shape);
         const isFeatureIcon = ["leaf", "camera", "drone", "ai"].includes(shape);
-        const speed = randomBetween(0.08, 0.32);
-        const direction = randomBetween(0, Math.PI * 2);
-        const color = shape === "leaf"
-          ? (Math.random() > 0.5 ? "#0f9d79" : "#34a853")
-          : shape === "camera"
-            ? (Math.random() > 0.5 ? "#3367d6" : "#2380c2")
-            : shape === "drone"
-              ? (Math.random() > 0.5 ? "#3367d6" : "#2380c2")
-              : shape === "ai"
-                ? (Math.random() > 0.5 ? "#3367d6" : "#2380c2")
-                : palette[Math.floor(Math.random() * palette.length)];
+        const color = palette[index % palette.length];
 
         return {
           x,
           y,
-          vx: Math.cos(direction) * speed,
-          vy: Math.sin(direction) * speed,
+          homeX: x,
+          homeY: y,
+          vx: 0,
+          vy: 0,
           size: isFeatureIcon ? randomBetween(11, 16) : isGlyph ? randomBetween(7, 13) : randomBetween(2.5, 7),
           color,
           shape,
           rotation: randomBetween(0, Math.PI * 2),
-          spin: randomBetween(-0.0022, 0.0022),
-          phase: randomBetween(0, Math.PI * 2),
-          opacity: randomBetween(0.48, 0.88)
+          spin: (index % 2 === 0 ? 1 : -1) * randomBetween(0.00035, 0.00075),
+          phase: (index / total) * Math.PI * 2,
+          driftX: randomBetween(6, 11),
+          driftY: randomBetween(5, 9),
+          opacity: randomBetween(0.46, 0.78)
         };
       }
 
@@ -848,8 +1108,12 @@
         const influenceRadius = width < 620 ? 110 : 165;
 
         particles.forEach((particle) => {
-          particle.vx += Math.cos(time * 0.00032 + particle.phase) * 0.0016;
-          particle.vy += Math.sin(time * 0.00028 + particle.phase) * 0.0016;
+          const coordinatedTime = time * 0.00022;
+          const targetX = particle.homeX + Math.cos(coordinatedTime + particle.phase) * particle.driftX;
+          const targetY = particle.homeY + Math.sin(coordinatedTime * 1.15 + particle.phase) * particle.driftY;
+
+          particle.vx += (targetX - particle.x) * 0.006;
+          particle.vy += (targetY - particle.y) * 0.006;
 
           if (pointer.active) {
             const dx = particle.x - pointer.x;
@@ -857,20 +1121,20 @@
             const distance = Math.hypot(dx, dy) || 1;
 
             if (distance < influenceRadius) {
-              const force = Math.pow(1 - distance / influenceRadius, 2) * 0.82;
+              const force = Math.pow(1 - distance / influenceRadius, 2) * 0.58;
               particle.vx += (dx / distance) * force;
               particle.vy += (dy / distance) * force;
             }
           }
 
           const speed = Math.hypot(particle.vx, particle.vy);
-          if (speed > 2.6) {
-            particle.vx = (particle.vx / speed) * 2.6;
-            particle.vy = (particle.vy / speed) * 2.6;
+          if (speed > 2.25) {
+            particle.vx = (particle.vx / speed) * 2.25;
+            particle.vy = (particle.vy / speed) * 2.25;
           }
 
-          particle.vx *= 0.992;
-          particle.vy *= 0.992;
+          particle.vx *= 0.93;
+          particle.vy *= 0.93;
           particle.x += particle.vx;
           particle.y += particle.vy;
           particle.rotation += particle.spin;
@@ -904,7 +1168,7 @@
             const distance = Math.hypot(first.x - second.x, first.y - second.y);
 
             if (distance < 82) {
-              context.globalAlpha = (1 - distance / 82) * 0.14;
+              context.globalAlpha = (1 - distance / 82) * 0.09;
               context.strokeStyle = first.color;
               context.beginPath();
               context.moveTo(first.x, first.y);
@@ -1166,9 +1430,10 @@
 
     (() => {
       const wave = document.querySelector(".project-wave");
+      const waveTrack = wave?.querySelector(".project-wave-track");
       const icons = [...document.querySelectorAll(".wave-icon")];
 
-      if (!wave || !icons.length) return;
+      if (!wave || !waveTrack || !icons.length) return;
 
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
       const pointer = { x: -1000, y: -1000, active: false };
@@ -1183,6 +1448,10 @@
 
       let animationFrame = 0;
       let isVisible = false;
+      let trackX = 0;
+      let targetTrackX = 0;
+      let scrollPhase = 0;
+      let targetScrollPhase = 0;
 
       function resetIcons() {
         states.forEach((state) => {
@@ -1192,6 +1461,18 @@
           state.velocityY = 0;
           state.element.style.transform = "";
         });
+        trackX = 0;
+        waveTrack.style.transform = "";
+      }
+
+      function updateScrollMotion() {
+        const rectangle = wave.getBoundingClientRect();
+        const journey = window.innerHeight + rectangle.height;
+        const progress = Math.min(1, Math.max(0, (window.innerHeight - rectangle.top) / journey));
+        const travel = window.innerWidth < 620 ? 20 : 38;
+
+        targetTrackX = (0.5 - progress) * travel * 2;
+        targetScrollPhase = progress * Math.PI * 2;
       }
 
       function animate(time) {
@@ -1202,11 +1483,15 @@
           return;
         }
 
+        trackX += (targetTrackX - trackX) * 0.1;
+        scrollPhase += (targetScrollPhase - scrollPhase) * 0.1;
+        waveTrack.style.transform = `translate3d(${trackX}px, 0, 0)`;
+
         const rectangles = states.map((state) => state.element.getBoundingClientRect());
         const interactionRadius = 125;
 
         states.forEach((state, index) => {
-          const waveY = Math.sin(time * 0.00145 + state.phase) * 12;
+          const waveY = Math.sin(time * 0.00145 + state.phase + scrollPhase) * 12;
           let targetX = 0;
           let targetY = 0;
 
@@ -1264,6 +1549,8 @@
       wave.addEventListener("pointerleave", () => {
         pointer.active = false;
       });
+      window.addEventListener("scroll", updateScrollMotion, { passive: true });
+      window.addEventListener("resize", updateScrollMotion, { passive: true });
 
       document.addEventListener("visibilitychange", () => {
         if (document.hidden) stopAnimation();
@@ -1281,11 +1568,694 @@
 
       const visibilityObserver = new IntersectionObserver(([entry]) => {
         isVisible = entry.isIntersecting;
-        if (isVisible) startAnimation();
+        if (isVisible) {
+          updateScrollMotion();
+          startAnimation();
+        }
         else stopAnimation();
       }, { threshold: 0.05 });
 
       visibilityObserver.observe(wave);
+      updateScrollMotion();
+    })();
+
+    (() => {
+      const wave = document.querySelector(".about-sine-wave");
+      const waveTrack = wave?.querySelector(".about-sine-track");
+      const icons = [...(wave?.querySelectorAll(".about-wave-icon") || [])];
+
+      if (!wave || !waveTrack || !icons.length) return;
+
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const pointer = { x: -1000, y: -1000, active: false };
+      const states = icons.map((element, index) => ({
+        element,
+        phase: index * 0.78,
+        x: 0,
+        y: 0,
+        velocityX: 0,
+        velocityY: 0
+      }));
+
+      let animationFrame = 0;
+      let isVisible = false;
+      let trackX = 0;
+      let targetTrackX = 0;
+      let scrollPhase = 0;
+      let targetScrollPhase = 0;
+
+      function resetIcons() {
+        trackX = 0;
+        targetTrackX = 0;
+        waveTrack.style.transform = "none";
+        states.forEach((state) => {
+          state.x = 0;
+          state.y = 0;
+          state.velocityX = 0;
+          state.velocityY = 0;
+          state.element.style.transform = "none";
+        });
+      }
+
+      function updateScrollMotion() {
+        const rectangle = wave.getBoundingClientRect();
+        const pageTop = rectangle.top + window.scrollY;
+        const travel = window.innerHeight + rectangle.height;
+        const progress = Math.max(0, Math.min(1, (window.scrollY + window.innerHeight - pageTop) / travel));
+        targetTrackX = (progress - 0.5) * 22;
+        targetScrollPhase = progress * Math.PI * 2;
+      }
+
+      function animate(time) {
+        animationFrame = 0;
+
+        trackX += (targetTrackX - trackX) * 0.08;
+        scrollPhase += (targetScrollPhase - scrollPhase) * 0.08;
+        waveTrack.style.transform = `translate3d(${trackX}px, 0, 0)`;
+
+        const rectangles = states.map((state) => state.element.getBoundingClientRect());
+        const interactionRadius = 105;
+
+        states.forEach((state, index) => {
+          const waveY = Math.sin(time * 0.00135 + state.phase + scrollPhase) * 10;
+          let targetX = 0;
+          let targetY = 0;
+
+          if (pointer.active) {
+            const rectangle = rectangles[index];
+            const centerX = rectangle.left + rectangle.width / 2;
+            const centerY = rectangle.top + rectangle.height / 2;
+            const deltaX = centerX - pointer.x;
+            const deltaY = centerY - pointer.y;
+            const distance = Math.hypot(deltaX, deltaY) || 1;
+
+            if (distance < interactionRadius) {
+              const force = Math.pow(1 - distance / interactionRadius, 2) * 34;
+              targetX = (deltaX / distance) * force;
+              targetY = (deltaY / distance) * force;
+            }
+          }
+
+          state.velocityX += (targetX - state.x) * 0.075;
+          state.velocityY += (targetY - state.y) * 0.075;
+          state.velocityX *= 0.78;
+          state.velocityY *= 0.78;
+          state.x += state.velocityX;
+          state.y += state.velocityY;
+          state.element.style.transform = `translate3d(${state.x}px, ${waveY + state.y}px, 0)`;
+        });
+
+        if (isVisible && !document.hidden && !reducedMotion.matches) {
+          animationFrame = window.requestAnimationFrame(animate);
+        }
+      }
+
+      function startAnimation() {
+        if (!animationFrame && isVisible && !document.hidden && !reducedMotion.matches) {
+          animationFrame = window.requestAnimationFrame(animate);
+        }
+      }
+
+      function stopAnimation() {
+        if (animationFrame) {
+          window.cancelAnimationFrame(animationFrame);
+          animationFrame = 0;
+        }
+      }
+
+      wave.addEventListener("pointermove", (event) => {
+        pointer.x = event.clientX;
+        pointer.y = event.clientY;
+        pointer.active = true;
+      }, { passive: true });
+      wave.addEventListener("pointerleave", () => {
+        pointer.active = false;
+      });
+      window.addEventListener("scroll", updateScrollMotion, { passive: true });
+      window.addEventListener("resize", updateScrollMotion, { passive: true });
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) stopAnimation();
+        else startAnimation();
+      });
+
+      reducedMotion.addEventListener("change", () => {
+        if (reducedMotion.matches) {
+          stopAnimation();
+          resetIcons();
+        } else {
+          startAnimation();
+        }
+      });
+
+      const visibilityObserver = new IntersectionObserver(([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) {
+          updateScrollMotion();
+          startAnimation();
+        } else {
+          stopAnimation();
+        }
+      }, { threshold: 0.05 });
+
+      visibilityObserver.observe(wave);
+      updateScrollMotion();
+    })();
+
+    (() => {
+      const morphArea = document.querySelector(".about-particle-morph");
+      const canvas = document.getElementById("about-particle-canvas");
+      const context = canvas?.getContext("2d");
+
+      if (!morphArea || !canvas || !context) return;
+
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const particleColor = "#138766";
+
+      let width = 0;
+      let height = 0;
+      let particles = [];
+      let animationFrame = 0;
+      let isVisible = false;
+      let isMorphed = false;
+
+      const randomBetween = (min, max) => Math.random() * (max - min) + min;
+
+      function sampleLine(points, x1, y1, x2, y2, spacing = 4.5) {
+        const distance = Math.hypot(x2 - x1, y2 - y1);
+        const count = Math.max(2, Math.ceil(distance / spacing));
+
+        for (let index = 0; index <= count; index += 1) {
+          const progress = index / count;
+          points.push({
+            x: x1 + (x2 - x1) * progress,
+            y: y1 + (y2 - y1) * progress
+          });
+        }
+      }
+
+      function sampleCircle(points, centerX, centerY, radiusX, radiusY, count = 15) {
+        for (let index = 0; index < count; index += 1) {
+          const angle = (index / count) * Math.PI * 2;
+          points.push({
+            x: centerX + Math.cos(angle) * radiusX,
+            y: centerY + Math.sin(angle) * radiusY
+          });
+        }
+      }
+
+      function buildTargets() {
+        const designPoints = [];
+        const rotorCenters = [
+          [60, 36],
+          [110, 36],
+          [60, 76],
+          [110, 76]
+        ];
+
+        rotorCenters.forEach(([x, y]) => {
+          sampleLine(designPoints, 85, 56, x, y, 6);
+          sampleCircle(designPoints, x, y, 9, 3.5, 10);
+        });
+
+        sampleLine(designPoints, 85, 46, 96, 56, 6);
+        sampleLine(designPoints, 96, 56, 85, 66, 6);
+        sampleLine(designPoints, 85, 66, 74, 56, 6);
+        sampleLine(designPoints, 74, 56, 85, 46, 6);
+
+        // AI microchip, sized to balance the drone icon.
+        sampleLine(designPoints, 188, 20, 262, 20, 6.5);
+        sampleLine(designPoints, 262, 20, 262, 92, 6.5);
+        sampleLine(designPoints, 262, 92, 188, 92, 6.5);
+        sampleLine(designPoints, 188, 92, 188, 20, 6.5);
+
+        [202, 225, 248].forEach((x) => {
+          sampleLine(designPoints, x, 20, x, 13, 5);
+          sampleLine(designPoints, x, 92, x, 99, 5);
+        });
+        [34, 56, 78].forEach((y) => {
+          sampleLine(designPoints, 188, y, 181, y, 5);
+          sampleLine(designPoints, 262, y, 269, y, 5);
+        });
+
+        sampleLine(designPoints, 199, 75, 212, 36, 4.5);
+        sampleLine(designPoints, 212, 36, 225, 75, 4.5);
+        sampleLine(designPoints, 204, 59, 220, 59, 4.5);
+        sampleLine(designPoints, 232, 36, 250, 36, 4.5);
+        sampleLine(designPoints, 241, 36, 241, 75, 4.5);
+        sampleLine(designPoints, 232, 75, 250, 75, 4.5);
+
+        const scale = Math.min(width / 310, height / 112);
+        const offsetX = (width - 310 * scale) / 2;
+        const offsetY = (height - 112 * scale) / 2;
+
+        return designPoints
+          .map((point) => ({
+            x: offsetX + point.x * scale,
+            y: offsetY + point.y * scale
+          }))
+          .sort(() => Math.random() - 0.5);
+      }
+
+      function resize() {
+        const rectangle = morphArea.getBoundingClientRect();
+        const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+
+        width = rectangle.width;
+        height = rectangle.height;
+        canvas.width = Math.round(width * pixelRatio);
+        canvas.height = Math.round(height * pixelRatio);
+        context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+        particles = buildTargets().map((target) => {
+          const homeX = randomBetween(8, width - 8);
+          const homeY = randomBetween(8, height - 8);
+
+          return {
+            x: homeX,
+            y: homeY,
+            homeX,
+            homeY,
+            target,
+            velocityX: 0,
+            velocityY: 0,
+            radius: randomBetween(1.15, 1.85),
+            phase: randomBetween(0, Math.PI * 2)
+          };
+        });
+
+        draw();
+      }
+
+      function draw() {
+        context.clearRect(0, 0, width, height);
+        context.fillStyle = particleColor;
+
+        particles.forEach((particle) => {
+          context.globalAlpha = 0.68 + particle.radius * 0.12;
+          context.beginPath();
+          context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+          context.fill();
+        });
+
+        context.globalAlpha = 1;
+      }
+
+      function update(time) {
+        particles.forEach((particle) => {
+          const targetX = isMorphed
+            ? particle.target.x
+            : particle.homeX + Math.cos(time * 0.00065 + particle.phase) * 3.5;
+          const targetY = isMorphed
+            ? particle.target.y
+            : particle.homeY + Math.sin(time * 0.00075 + particle.phase) * 3.5;
+
+          particle.velocityX += (targetX - particle.x) * 0.018;
+          particle.velocityY += (targetY - particle.y) * 0.018;
+          particle.velocityX *= 0.84;
+          particle.velocityY *= 0.84;
+          particle.x += particle.velocityX;
+          particle.y += particle.velocityY;
+        });
+      }
+
+      function animate(time) {
+        animationFrame = 0;
+        update(time);
+        draw();
+
+        if (isVisible && !document.hidden && !reducedMotion.matches) {
+          animationFrame = window.requestAnimationFrame(animate);
+        }
+      }
+
+      function startAnimation() {
+        if (!animationFrame && isVisible && !document.hidden && !reducedMotion.matches) {
+          animationFrame = window.requestAnimationFrame(animate);
+        }
+      }
+
+      function stopAnimation() {
+        if (animationFrame) {
+          window.cancelAnimationFrame(animationFrame);
+          animationFrame = 0;
+        }
+      }
+
+      function setMorphState(nextState) {
+        isMorphed = nextState;
+
+        if (reducedMotion.matches) {
+          particles.forEach((particle) => {
+            particle.x = nextState ? particle.target.x : particle.homeX;
+            particle.y = nextState ? particle.target.y : particle.homeY;
+          });
+          draw();
+        }
+      }
+
+      morphArea.addEventListener("pointerenter", () => setMorphState(true));
+      morphArea.addEventListener("pointerleave", () => setMorphState(false));
+      morphArea.addEventListener("focus", () => setMorphState(true));
+      morphArea.addEventListener("blur", () => setMorphState(false));
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) stopAnimation();
+        else startAnimation();
+      });
+
+      reducedMotion.addEventListener("change", () => {
+        if (reducedMotion.matches) {
+          stopAnimation();
+          setMorphState(isMorphed);
+        } else {
+          startAnimation();
+        }
+      });
+
+      const visibilityObserver = new IntersectionObserver(([entry]) => {
+        isVisible = entry.isIntersecting;
+        if (isVisible) startAnimation();
+        else stopAnimation();
+      }, { threshold: 0.05 });
+
+      const resizeObserver = new ResizeObserver(resize);
+      resizeObserver.observe(morphArea);
+      visibilityObserver.observe(morphArea);
+      resize();
+    })();
+
+    (() => {
+      const particleVisuals = document.querySelectorAll("[data-particle-scene]");
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      if (!particleVisuals.length) return;
+
+      particleVisuals.forEach((visual) => {
+        const canvas = visual.querySelector("canvas");
+        const context = canvas?.getContext("2d");
+        const scene = visual.dataset.particleScene;
+
+        if (!canvas || !context) return;
+
+        const particleColor = scene === "current" ? "#138766" : "#2f6fc1";
+        const pointer = { x: 0, y: 0, active: false };
+        let width = 0;
+        let height = 0;
+        let particles = [];
+        let animationFrame = 0;
+        let isVisible = false;
+
+        function sampleLine(points, x1, y1, x2, y2, spacing = 5) {
+          const distance = Math.hypot(x2 - x1, y2 - y1);
+          const count = Math.max(2, Math.ceil(distance / spacing));
+
+          for (let index = 0; index <= count; index += 1) {
+            const progress = index / count;
+            points.push({
+              x: x1 + (x2 - x1) * progress,
+              y: y1 + (y2 - y1) * progress
+            });
+          }
+        }
+
+        function sampleCircle(points, centerX, centerY, radiusX, radiusY, count = 12, rotorDirection = 0) {
+          for (let index = 0; index < count; index += 1) {
+            const angle = (index / count) * Math.PI * 2;
+            const point = {
+              x: centerX + Math.cos(angle) * radiusX,
+              y: centerY + Math.sin(angle) * radiusY
+            };
+
+            if (rotorDirection) {
+              point.rotor = {
+                centerX,
+                centerY,
+                radiusX,
+                radiusY,
+                angle,
+                direction: rotorDirection
+              };
+            }
+
+            points.push(point);
+          }
+        }
+
+        function sampleQuadratic(points, start, control, end, count = 18) {
+          for (let index = 0; index <= count; index += 1) {
+            const progress = index / count;
+            const inverse = 1 - progress;
+            points.push({
+              x: inverse * inverse * start.x + 2 * inverse * progress * control.x + progress * progress * end.x,
+              y: inverse * inverse * start.y + 2 * inverse * progress * control.y + progress * progress * end.y
+            });
+          }
+        }
+
+        function buildCurrentScene() {
+          const points = [];
+
+          // Plant growing inside a microchip.
+          sampleLine(points, 30, 13, 106, 13, 6);
+          sampleLine(points, 106, 13, 106, 83, 6);
+          sampleLine(points, 106, 83, 30, 83, 6);
+          sampleLine(points, 30, 83, 30, 13, 6);
+          [47, 68, 89].forEach((x) => {
+            sampleLine(points, x, 13, x, 5, 5);
+            sampleLine(points, x, 83, x, 91, 5);
+          });
+          [30, 48, 66].forEach((y) => {
+            sampleLine(points, 30, y, 21, y, 5);
+            sampleLine(points, 106, y, 115, y, 5);
+          });
+          sampleLine(points, 68, 72, 68, 35, 4.5);
+          sampleQuadratic(points, { x: 68, y: 48 }, { x: 48, y: 25 }, { x: 43, y: 39 }, 12);
+          sampleQuadratic(points, { x: 43, y: 39 }, { x: 49, y: 54 }, { x: 68, y: 48 }, 12);
+          sampleQuadratic(points, { x: 68, y: 40 }, { x: 88, y: 20 }, { x: 94, y: 35 }, 12);
+          sampleQuadratic(points, { x: 94, y: 35 }, { x: 89, y: 50 }, { x: 68, y: 40 }, 12);
+          sampleLine(points, 68, 48, 47, 38, 5);
+          sampleLine(points, 68, 40, 91, 34, 5);
+          sampleLine(points, 55, 73, 81, 73, 5);
+
+          // Compact drone with four rotors.
+          const center = { x: 207, y: 50 };
+          const rotors = [
+            [174, 29, 1],
+            [242, 29, -1],
+            [177, 70, -1],
+            [239, 70, 1]
+          ];
+
+          rotors.forEach(([x, y, direction]) => {
+            sampleLine(points, center.x, center.y, x, y, 5.5);
+            sampleCircle(points, x, y, 11, 3.5, 11, direction);
+          });
+          sampleLine(points, 207, 40, 219, 50, 5);
+          sampleLine(points, 219, 50, 207, 61, 5);
+          sampleLine(points, 207, 61, 195, 50, 5);
+          sampleLine(points, 195, 50, 207, 40, 5);
+          sampleCircle(points, 207, 52, 3.5, 3.5, 8);
+
+          return points;
+        }
+
+        function buildPreviousScene() {
+          const points = [];
+          const nodes = [
+            [24, 51, 5],
+            [63, 23, 6],
+            [69, 73, 6],
+            [112, 38, 5],
+            [116, 70, 4]
+          ];
+
+          [[0, 1], [0, 2], [1, 3], [2, 3], [2, 4], [3, 4]].forEach(([from, to]) => {
+            sampleLine(points, nodes[from][0], nodes[from][1], nodes[to][0], nodes[to][1], 6);
+          });
+          nodes.forEach(([x, y, radius]) => sampleCircle(points, x, y, radius, radius, 10));
+
+          // Code brackets and slash.
+          sampleLine(points, 180, 26, 158, 48, 5);
+          sampleLine(points, 158, 48, 180, 70, 5);
+          sampleLine(points, 236, 26, 258, 48, 5);
+          sampleLine(points, 258, 48, 236, 70, 5);
+          sampleLine(points, 220, 22, 196, 75, 5);
+
+          return points;
+        }
+
+        function buildTargets() {
+          const designPoints = scene === "current" ? buildCurrentScene() : buildPreviousScene();
+          const designWidth = 280;
+          const designHeight = 96;
+          const scale = Math.min(width / designWidth, height / designHeight);
+          const offsetX = (width - designWidth * scale) / 2;
+          const offsetY = (height - designHeight * scale) / 2;
+
+          return designPoints.map((point, index) => {
+            const target = {
+              x: offsetX + point.x * scale,
+              y: offsetY + point.y * scale,
+              phase: (index / designPoints.length) * Math.PI * 2
+            };
+
+            if (point.rotor) {
+              target.rotor = {
+                centerX: offsetX + point.rotor.centerX * scale,
+                centerY: offsetY + point.rotor.centerY * scale,
+                radiusX: point.rotor.radiusX * scale,
+                radiusY: point.rotor.radiusY * scale,
+                angle: point.rotor.angle,
+                direction: point.rotor.direction
+              };
+            }
+
+            return target;
+          });
+        }
+
+        function draw() {
+          context.clearRect(0, 0, width, height);
+          context.fillStyle = particleColor;
+
+          particles.forEach((particle) => {
+            context.globalAlpha = 0.64 + particle.radius * 0.16;
+            context.beginPath();
+            context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+            context.fill();
+          });
+
+          context.globalAlpha = 1;
+        }
+
+        function resize() {
+          const rectangle = visual.getBoundingClientRect();
+          const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+
+          width = rectangle.width;
+          height = rectangle.height;
+          canvas.width = Math.round(width * pixelRatio);
+          canvas.height = Math.round(height * pixelRatio);
+          context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+          particles = buildTargets().map((target, index) => ({
+            x: target.x,
+            y: target.y,
+            target,
+            velocityX: 0,
+            velocityY: 0,
+            radius: 1.15 + (index % 4) * 0.14
+          }));
+
+          draw();
+        }
+
+        function update(time) {
+          const groupOffsetY = Math.sin(time * 0.00075 + (scene === "current" ? 0 : 1.2)) * 1.5;
+          const groupOffsetX = Math.cos(time * 0.0005 + (scene === "current" ? 0.4 : 1.7)) * 0.8;
+
+          particles.forEach((particle) => {
+            let shapeTargetX = particle.target.x;
+            let shapeTargetY = particle.target.y;
+
+            if (particle.target.rotor) {
+              const rotor = particle.target.rotor;
+              const rotation = time * 0.0042 * rotor.direction;
+              const angle = rotor.angle + rotation;
+              shapeTargetX = rotor.centerX + Math.cos(angle) * rotor.radiusX;
+              shapeTargetY = rotor.centerY + Math.sin(angle) * rotor.radiusY;
+            }
+
+            const targetX = shapeTargetX + groupOffsetX + Math.cos(time * 0.0006 + particle.target.phase) * 0.45;
+            const targetY = shapeTargetY + groupOffsetY + Math.sin(time * 0.00065 + particle.target.phase) * 0.45;
+
+            particle.velocityX += (targetX - particle.x) * 0.026;
+            particle.velocityY += (targetY - particle.y) * 0.026;
+
+            if (pointer.active) {
+              const deltaX = particle.x - pointer.x;
+              const deltaY = particle.y - pointer.y;
+              const distance = Math.hypot(deltaX, deltaY) || 1;
+              const interactionRadius = 48;
+
+              if (distance < interactionRadius) {
+                const force = (1 - distance / interactionRadius) * 0.48;
+                particle.velocityX += (deltaX / distance) * force;
+                particle.velocityY += (deltaY / distance) * force;
+              }
+            }
+
+            particle.velocityX *= 0.86;
+            particle.velocityY *= 0.86;
+            particle.x += particle.velocityX;
+            particle.y += particle.velocityY;
+          });
+        }
+
+        function animate(time) {
+          animationFrame = 0;
+          update(time);
+          draw();
+
+          if (isVisible && !document.hidden && !reducedMotion.matches) {
+            animationFrame = window.requestAnimationFrame(animate);
+          }
+        }
+
+        function startAnimation() {
+          if (!animationFrame && isVisible && !document.hidden && !reducedMotion.matches) {
+            animationFrame = window.requestAnimationFrame(animate);
+          }
+        }
+
+        function stopAnimation() {
+          if (animationFrame) {
+            window.cancelAnimationFrame(animationFrame);
+            animationFrame = 0;
+          }
+        }
+
+        visual.addEventListener("pointermove", (event) => {
+          const rectangle = visual.getBoundingClientRect();
+          pointer.x = event.clientX - rectangle.left;
+          pointer.y = event.clientY - rectangle.top;
+          pointer.active = true;
+        }, { passive: true });
+
+        visual.addEventListener("pointerleave", () => {
+          pointer.active = false;
+        });
+
+        document.addEventListener("visibilitychange", () => {
+          if (document.hidden) stopAnimation();
+          else startAnimation();
+        });
+
+        reducedMotion.addEventListener("change", () => {
+          if (reducedMotion.matches) {
+            stopAnimation();
+            particles.forEach((particle) => {
+              particle.x = particle.target.x;
+              particle.y = particle.target.y;
+            });
+            draw();
+          } else {
+            startAnimation();
+          }
+        });
+
+        const visibilityObserver = new IntersectionObserver(([entry]) => {
+          isVisible = entry.isIntersecting;
+          if (isVisible) startAnimation();
+          else stopAnimation();
+        }, { threshold: 0.05 });
+
+        const resizeObserver = new ResizeObserver(resize);
+        resizeObserver.observe(visual);
+        visibilityObserver.observe(visual);
+        resize();
+      });
     })();
   </script>
 
